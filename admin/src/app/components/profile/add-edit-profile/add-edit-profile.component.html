@@ -1,0 +1,183 @@
+<form novalidate (ngSubmit)="registerProfile()" [formGroup]="formProfile" class="row g-3">
+    <div class="col-md-4">
+        <label for="inputName4" class="form-label"><strong>Nom *</strong></label>
+        <input type="text" formControlName="name" class="form-control" id="inputName4"
+        [ngClass]="{
+            'is-invalid':formProfile.get('title')?.touched && !formProfile.get('title')?.valid,
+            'is-valid':formProfile.get('title')?.valid
+            }">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='name')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputSurname4" class="form-label"><strong>Prénom *</strong></label>
+        <input type="text" class="form-control" formControlName="surname" id="inputSurname4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='surname')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+      <label for="inputEmail4" class="form-label"><strong>Email</strong></label>
+      <input type="email" class="form-control" formControlName="email" id="inputEmail4">
+      <ng-container *ngIf="errors">
+        <div *ngFor="let item of errors | keyvalue"> 
+            <span class="text-danger" *ngIf="(item.key=='email')">
+                {{item.value}}
+            </span>
+        </div>
+    </ng-container>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputPhone4" class="form-label"><strong>Téléphone*</strong></label>
+        <input type="tel" class="form-control" formControlName="phone" id="inputPhone4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='phone')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputDateBorn4" class="form-label"><strong>Date de Naissance *</strong></label>
+        <input type="date" class="form-control" formControlName="dateBorn" id="inputDateBorn4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='dateBorn')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputPlaceBorn4" class="form-label"><strong>Lieu de Naissance *</strong></label>
+        <input type="text" class="form-control" formControlName="placeBorn" id="inputPlaceBorn4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='placeBorn')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputAge4" class="form-label"><strong>Age *</strong></label>
+        <input type="number" class="form-control" formControlName="age" id="inputAge4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='age')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputCity4" class="form-label"><strong>Ville de résidence *</strong></label>
+        <input type="text" class="form-control" formControlName="city" id="inputCity4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='city')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label"><strong>Langues parlée(s) *</strong></label>
+        <select id="inputState" formControlName="language" class="form-select">
+            <option selected>Choose...</option>
+            <option>Français</option>
+            <option>Anglais</option>
+        </select>
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='language')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputReligion4" class="form-label"><strong>Réligion *</strong></label>
+        <input type="text" class="form-control" formControlName="religion" id="inputReligion4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='religion')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputSituation4" class="form-label"><strong>Situation Matrimoniale *</strong></label>
+        <input type="text" class="form-control" formControlName="situation" id="inputSituation4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='situation')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4">
+        <label for="inputChildren4" class="form-label"><strong>Nombre d'enfants *</strong></label>
+        <input type="text" class="form-control" formControlName="children" id="inputChildren4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='children')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-md-4">
+        <label for="inputMainImg4" class="form-label"><strong>Image principale *</strong></label>
+        <input type="file" class="form-control" (change)="onFileChange($event)" id="inputMainImg4">
+        <ng-container *ngIf="errors">
+            <div *ngFor="let item of errors | keyvalue"> 
+                <span class="text-danger" *ngIf="(item.key=='mainImg')">
+                    {{item.value}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+    <div class="col-md-4" *ngIf="imagSrc && imagSrc !==''">
+        <img width="50%" height="75%" [src]="imagSrc" alt="image">
+    </div>
+    <hr>
+    <h5><strong>Autres images *</strong></h5>
+    <div formArrayName="fileUpload" *ngFor="let item of fileList.controls, let i=index" class="row">
+        <div [formGroupName]="i" class="col-md-12">
+            <label attr.for="{{'inputOthersImg4' + i}}" class="form-label  mt-3"><strong>Image {{i+1}} *</strong></label>
+            <input type="file" class="form-control" id="{{'inputOthersImg4' + i}}"
+            (change)="setFileChange($event, i)">
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button (click)="addFile()" type="button" class="btn btn-secondary">Ajouter image</button>
+    </div>
+
+    <div class="col-12">
+        <div class="form-check form-switch">
+            <input class="form-check-input" formControlName="availability" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Disponibilité</label>
+          </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="registerProfile()" class="btn btn-primary">Enregistrer</button>
+      </div>
+  </form>

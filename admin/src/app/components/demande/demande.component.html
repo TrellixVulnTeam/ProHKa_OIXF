@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+
+
+  <div class="container-fluid">
+    <h1 class="text-center mt-3"><strong>LISTE DE TOUTES LES DEMANDES</strong></h1>
+    <table class="table mt-4">
+        <thead class="table-info">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">EMail</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Profile candidat</th>
+            <th scope="col">Téléphone candidat</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of commands let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.surname}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+                <td><a target=”_blank” href="{{url}}/home/gallery/{{item.user.id}}/">{{item.user.name}}</a></td>
+                <td>{{item.user.phoneNumber}}</td>
+                <td>
+                    <select (change)="sendStatus(item.id, $event)" class="form-select" aria-label="Default select example">
+                        <option [selected]="item.status == 'ouvert'">Ouvert</option>
+                        <option [selected]="item.status == 'En cours'">En cours</option>
+                        <option [selected]="item.status == 'Terminé'">Terminé</option>
+                    </select>
+                </td>
+                <td><button (click)="deleteComand(item)" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                    </svg>
+                </button></td>
+              </tr>
+        </tbody>
+      </table>    
+</div>
+
+
+
+<!-- <div *ngIf="commands==[]" class="container-fluid">
+  <h1 class="text-center mt-5">AUCUNE COMMANDE EN ATTENTE</h1>
+</div> -->

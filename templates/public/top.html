@@ -1,0 +1,174 @@
+{% load static %}
+<body>
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="custom-select-box">
+                        <!-- <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+							<option>¥ JPY</option>
+							<option>$ USD</option>
+							<option>€ EUR</option>
+						</select> -->
+                    </div>
+                    <div class="right-phone-box">
+                        <p>Nous joindre :- <a href="tel:{{setting.phoneNumber}}">{{setting.phoneNumber}} </a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                            <!-- <li><a href="#"><i class="fa fa-user s_color"></i> My Account</a></li> -->
+                            <li><p>Localisation : </p> <br> <a href="#"><i class="fas fa-location-arrow"></i> {{setting.localisation}}</a></li>
+                            <!-- <li><a href="#"><i class="fas fa-headset"></i> Contact Us</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                {% if not request.user.is_authenticated %}
+                <div class="login-box mx-5">
+                    <a href="" data-bs-toggle="modal" id="modalRegister01" data-bs-target="#exampleModal-register" class="btn btn-secondary" >
+                        Créer un compte
+                    </a>
+                  </div>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <div class="login-box mx-5">
+                    <a href="{% url 'auth:logout' %}" data-bs-toggle="modal" id="modalRegister01" data-bs-target="#exampleModal-register" class="btn btn-secondary" >
+                      Déconnexion
+                    </a>
+                  </div>
+                  {% endif %}
+                {% if not request.user.is_authenticated %}
+                <div class="login-box">
+                    <a href="{% url 'auth:login' %} " class="btn btn-secondary">
+                        Se connecter
+                    </a>
+                </div>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <div class="login-box">
+                    <a title="Voir mon profil" href="{% url 'profiles:profil' %}" class="btn btn-secondary">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                      </svg>
+                      
+                    </a>
+                </div>
+                {% endif %}
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> az dvvfrvg rggrvg rgfergf gfbvrbv(r)
+                            </li>
+                            <!-- <li>
+                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 50%! Shop Now
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 10%! Shop Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 50% - 80% off on Vegetables
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 20% off Entire Purchase Promo code: offT30
+                            </li>-->
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 50%! Shop Now 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal-register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">CREER UN COMPTE</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="formSubmitRegister" class="row g-3">
+                <div class="col-4">
+                    <label for="inputName4" class="form-label"><strong>Nom</strong> </label>
+                    <input type="text" class="form-control" id="inputName4" placeholder="Nom">
+                    <div id="validationServer03Feedback" class="invalid">
+                      <span id="showErrorName01" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                <label for="inputSurname" class="form-label"><strong>Prénom</strong> </label>
+                <input type="text" class="form-control" id="inputSurname10" placeholder="Prénom">
+                <div id="validationServer03Feedback" class="invalid">
+                    <span id="showErrorSurname01" class="text-danger"></span>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="inputEmail4" class="form-label"><strong>Email</strong> </label>
+                  <input type="email" class="form-control" id="inputEmail4">
+                  <div id="validationServer03Feedback" class="invalid">
+                    <span id="showErrorEmail01" class="text-danger"></span>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPassword4" class="form-label"><strong>Mot de passe</strong> </label>
+                  <input type="password" class="form-control" id="inputPassword4">
+                  <div id="validationServer03Feedback" class="invalid">
+                    <span id="showErrorPassword01" class="text-danger"></span>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="inputPassword41" class="form-label"><strong>Ressaisissez</strong> </label>
+                    <input type="password" class="form-control" id="inputPassword41">
+                    <div id="validationServer03Feedback" class="invalid">
+                      <span id="showErrorPassword02" class="text-danger"></span>
+                    </div>
+                </div>
+                  
+                <div class="col-12">
+                  <label for="inputTel2" class="form-label"><strong>Téléphone</strong> </label>
+                  <input type="tel" class="form-control" id="inputTel2" placeholder="Numéro de Téléphone">
+                  <div id="validationServer03Feedback" class="invalid">
+                    <span id="showErrorPhone" class="text-danger"></span>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <label for="inputCity" class="form-label"><strong>Ville de résidence</strong> </label>
+                  <input type="text" class="form-control" id="inputCity12" placeholder="Ville de résidence">
+                  <div id="validationServer03Feedback" class="invalid">
+                    <span id="showErrorCity01" class="text-danger"></span>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="hidden" class="form-control" value="user" id="typeUser">
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="registerUser12" class="btn btn-primary">S'enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>

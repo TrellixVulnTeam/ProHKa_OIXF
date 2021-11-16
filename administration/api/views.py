@@ -277,6 +277,7 @@ class SendProposition(APIView):
         if request.method == 'POST':
             data = JSONParser().parse(request)
             idClient = data['id']
+            # print("qwerty qwertyasdfgh", idClient)
             profil = data['profile']
             for idProfile in profil:
                 profile.append(str(idProfile['id']))
@@ -307,3 +308,51 @@ class ChoiceCLient(APIView):
             sendMessage("Profil choisi par le client", 'email/choiceClient.html',
                         {'profile': profile}, emailClient, [settings.EMAIL_HOST_USER])
         return Response("success", status=status.HTTP_200_OK)
+
+
+class EvaluateAPIView(APIView):
+    # permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        evaluation = EvaluationFile.objects.all().order_by('updated')
+        serializers = EvaluationFileSerializers(evaluation, many=True)
+        print("the serializers are ", serializers.data)
+        return Response(serializers.data, status=status.HTTP_200_OK)
+
+    @transaction.atomic
+    def post(self, request, format=None):
+        error = []
+        errors = {}
+        if request.method == 'POST':
+            data = request.POST
+            punctuality = checkLenAndCompareNumber(
+                'punctuality', data['punctuality'], error)
+            adaptation = checkLenAndCompareNumber(
+                'adaptation', data['adaptation'], error)
+            respect = checkLenAndCompareNumber(
+                'respect', data['respect'], error)
+            iniative = checkLenAndCompareNumber(
+                'iniative', data['iniative'], error)
+            finalNote = checkLenOfField(
+                'finalNote', data['finalNote'], 1, error)
+            userId = checkLenOfField('userId', data['userId'], 1, error)
+            profileUser = checkLenOfField(
+                'profileUser', data['profileUser'], 1, error)
+            decision = checkLenOfField(
+                'decision', data['trueRadio'], 1, error)
+            comment = checkLenOfField('comment', data['comment'], 10, error)
+            # print("the request data are ", userId, profileUser)
+            # print("the request data are ", error)
+
+            if error:
+                for data in error:
+                    for dat in data:
+                        errors[dat] = data[dat]
+            if len(error) == 0 and len(errors) == 0:
+                evaluation = EvaluationFile.objects.create(user_id=int(userId), profileUser_id=int(profileUser), punctuation=int(punctuality),
+                                                           adaptation=int(adaptation), respect=int(respect), iniative=int(iniative), finalNote=int(finalNote), decision=decision, comments=comment)
+                evaluation.save()
+                return Response('success', status=status.HTTP_200_OK)
+            else:
+                print(errors)
+                return Response(errors, status=status.HTTP_400_BAD_REQUEST)

@@ -30,6 +30,7 @@ def showSingleUser(request, id):
     otherImg = []
     if request.user.is_authenticated:
         user = UserRegistration.objects.get(id=id)
+        # print("qwerty qwerty", user)
         setting = GlobalSetting.objects.get(status=True)
         if request.user.id and user.user_id and (int(request.user.id) == int(user.user_id)):
             if user.saveOtherImg:

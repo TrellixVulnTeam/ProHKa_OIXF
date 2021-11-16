@@ -116,7 +116,7 @@ $(document).ready(function(){
                 }
             },
             error:function(err){
-                console.log("the error register ", err)
+                // console.log("the error register ", err)
             }
         })
     })

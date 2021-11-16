@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AuthenticationComponent } from "./components/authentication/authentication.component";
 import { DemandeComponent } from "./components/demande/demande.component";
+import { EvaluationComponent } from "./components/evaluation/evaluation.component";
 import { MessageComponent } from "./components/message/message.component";
 import { ProfileComponent } from "./components/profile/profile.component";
 // import { SingleArchiveComponent } from "./components/archives/single-archive/single-archive.component";
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
     { path: 'login', component: AuthenticationComponent },//canActivate:[Auth1Guard]
     { path: 'demande', component: DemandeComponent },//canActivate:[Auth1Guard]
     { path: 'message', component: MessageComponent },//canActivate:[Auth1Guard]
+    { path: 'evaluation', component: EvaluationComponent },//canActivate:[Auth1Guard]
     {
         path: "profiles",
         children: [

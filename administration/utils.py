@@ -4,6 +4,11 @@ import random
 import string
 import threading
 
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+
+from xhtml2pdf import pisa
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import EmailMultiAlternatives
@@ -72,3 +77,13 @@ def deletePathImage(tab):
             os.remove(settings.MEDIA_ROOT + fil.replace('/media', ''))
         else:
             pass
+
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None

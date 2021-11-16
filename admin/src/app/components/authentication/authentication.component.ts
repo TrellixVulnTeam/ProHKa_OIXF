@@ -28,13 +28,15 @@ export class AuthenticationComponent implements OnInit {
   loginAdmin() {
     this.auth.login(this.credential).subscribe(res => {
       if (res['token']) {
+        console.log("the credential are", res['token'])
         this.router.navigate(['profiles/list'])
-        console.log("the response is", res)
+        // console.log("the response is", res)
       }
     },
       (error => {
         this.errors = []
         this.errors = error.error
+        // console.log("the error is", error.error)
         showError(error, error.status, this.errors, error.error)
       })
     )

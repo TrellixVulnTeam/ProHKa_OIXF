@@ -5,6 +5,7 @@ from administration.api.views import *
 urlpatterns = [
     path("show-profile/", ProfileRegistrationAPIView.as_view(), name="showProfile"),
     path("add-profile/", ProfileRegistrationAPIView.as_view(), name="addProfile"),
+    path("add-evaluation/", EvaluateAPIView.as_view(), name="addEvaluate"),
     path("retrieve-setting/", GlobalSettingAPIView.as_view(), name="retrieveSetting"),
     path("add-setting/", GlobalSettingAPIView.as_view(), name="addSetting"),
     path("receive-mail/", ReceiveCommandAPIView.as_view(), name="emailRecived"),

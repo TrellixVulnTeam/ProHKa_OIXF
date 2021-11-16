@@ -15,6 +15,7 @@ import { UrlPipePipe } from './pipe/url-pipe.pipe';
 import { AddEditProfileComponent } from './components/profile/add-edit-profile/add-edit-profile.component';
 import { DemandeComponent } from './components/demande/demande.component';
 import { MessageComponent } from './components/message/message.component';
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MessageComponent } from './components/message/message.component';
     AddEditProfileComponent,
     DemandeComponent,
     MessageComponent,
+    EvaluationComponent,
   ],
   imports: [
     BrowserModule,

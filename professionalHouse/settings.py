@@ -34,7 +34,7 @@ if DEBUG:
     EMAIL_PORT = 1025
     EMAIL_USE_TLS = False
 
-ALLOWED_HOSTS = ['professionalhouse.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -172,11 +172,11 @@ AUTH_USER_MODEL = 'authentication.User'
 # CORS_ALLOW_ALL_ORIGINS: True
 CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-    "http://localhost:4200",
-    "http://127.0.0.1:4200",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:4200",
+#     "http://localhost:4200",
+#     "http://127.0.0.1:4200",
+# ]
 
 # CSRF_TRUSTED_ORIGINS = [
 #     "http://localhost:4200",

@@ -1,3 +1,4 @@
+from string import punctuation
 from django.db import models
 from django.utils.translation import activate
 from authentication.models import *
@@ -104,8 +105,28 @@ class Message(models.Model):
     phone = models.CharField(max_length=15, null=True, blank=True)
     object = models.CharField(max_length=100, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
-    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     status = models.CharField(max_length=15, default='non lu')
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
         return self.email
+
+
+class EvaluationFile(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    profileUser = models.ForeignKey(
+        UserRegistration, on_delete=models.CASCADE, null=True, blank=True)
+    punctuation = models.IntegerField(null=True, blank=True)
+    adaptation = models.IntegerField(null=True, blank=True)
+    respect = models.IntegerField(null=True, blank=True)
+    iniative = models.IntegerField(null=True, blank=True)
+    finalNote = models.IntegerField(null=True, blank=True)
+    decision = models.BooleanField(null=True, blank=True)
+    comments = models.TextField(null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return self.profileUser

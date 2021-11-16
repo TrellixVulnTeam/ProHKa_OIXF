@@ -1,3 +1,4 @@
+from django.db.models import fields
 from rest_framework import serializers
 from administration.models import *
 from authentication.models import *
@@ -35,4 +36,10 @@ class ReceiveCommandSerializers(serializers.ModelSerializer):
 class MessageSerializers(serializers.ModelSerializer):
     class Meta:
         model = Message
+        fields = "__all__"
+
+
+class EvaluationFileSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = EvaluationFile
         fields = "__all__"

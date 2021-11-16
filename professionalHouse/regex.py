@@ -105,6 +105,16 @@ def checkLenOfField(key, sentence, lenght, error):
         return sentence
 
 
+def checkLenAndCompareNumber(key, sentence, error):
+    if len(sentence) == 0 or sentence == None:
+        error.append({key: "Ce champ est réquis"})
+    elif int(sentence) > 5:
+        error.append(
+            {key: "Les notes sont comprises entre 0 et 5"})
+    else:
+        return sentence
+
+
 def checkPrice(field):
     if re.match(priceReg, field):
         return True

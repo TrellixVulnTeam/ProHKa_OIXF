@@ -16,13 +16,13 @@ function getCookie(name) {
 
 function setError(key, name, tableError, getIdInput, textError, getIdError){
     if (key == name) {
-        getIdInput.classList.add("is-invalid")
-        getIdError.textContent=textError
+        getIdInput?.classList?.add("is-invalid")
+        getIdError?.textContent=textError
       }
       if (tableError.hasOwnProperty(name) == false) {
-        getIdInput.classList.remove("is-invalid")
-        getIdInput.classList.add("is-valid")
-        getIdError.textContent=''
+        getIdInput?.classList?.remove("is-invalid")
+        getIdInput?.classList?.add("is-valid")
+        getIdError?.textContent=''
       }
 }
 
@@ -91,32 +91,6 @@ $(document).ready(function(){
                         setError(keysErrors[key], 'cityLive', errors, document.getElementById("inputCity12"), errors['cityLive'], document.getElementById("showErrorCity01"))
                     }
                 }
-            }
-        })
-    })
-
-    $("#selectProfile10").click(function(e){
-        e.preventDefault()
-        let formData = new FormData();
-        formData.append("idProfile", document.getElementById('profileSelected12').value)
-        $.ajax({
-            method:"POST",
-            url:"/custom/api/choice-client/",
-            processData:false,
-            contentType:false,
-            mimeType:"multipart/form-data",
-            headers:{
-            "X-CSRFToken": csrftoken
-            },
-            data:formData,
-            success:function(res){
-                if (res) {
-                    alert("Profil selectionne merci de nous faire confiance")
-                    window.location="/"
-                }
-            },
-            error:function(err){
-                // console.log("the error register ", err)
             }
         })
     })

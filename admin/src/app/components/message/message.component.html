@@ -3,14 +3,14 @@
 
 <div class="container-fluid">
     <h1 class="text-center mt-3"><strong>TOUTES LES MESSAGES</strong></h1>
+    <h3 class="text-center mt-3">Utilisateurs inscrits sur la plateforme</h3>
     <table class="table mt-4">
         <thead class="table-info">
           <tr>
-            <th class="col-0.5" scope="col">#</th>
-            <th class="col-1" scope="col">Expéditeur</th>
+            <!-- <th class="col-0.5" scope="col">#</th> -->
+            <th class="col-1.5" scope="col">Expéditeur</th>
             <th class="col-1.5" scope="col">Email</th>
             <th class="col-1.5" scope="col">Téléphone</th>
-            <!-- <th class="col-1" scope="col">Objet</th> -->
             <th class="col-3" scope="col">Message</th>
             <th class="col-1" scope="col">Status</th>
             <th class="col-2.5" scope="col">Candidat</th>
@@ -19,12 +19,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of messages let i=index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.phone}}</td>
-                <!-- <td>{{item.object}}</td> -->
-                <td>
+                <!-- <th *ngIf="item.authenticated" scope="row">{{i+1}}</th> -->
+                <td *ngIf="item.authenticated">{{item.name}}</td>
+                <td *ngIf="item.authenticated">{{item.email}}</td>
+                <td *ngIf="item.authenticated">{{item.phone}}</td>
+                <td *ngIf="item.authenticated">
                   <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample-{{item.id}}" role="button" aria-expanded="false" aria-controls="collapseExample-{{item.id}}">
                       Lire
@@ -42,13 +41,13 @@
                     </div>
                   </div>
                 </td>
-                <td>
+                <td *ngIf="item.authenticated">
                   <select (change)="sendStatu(item.id, $event)" id="inputState12" value="" class="form-select changeStatus">
                     <option [selected]="item.status=='lu'">lu</option>
                     <option [selected]="item.status=='non lu'">non lu</option>
                   </select>
                 </td>
-                <td>
+                <td *ngIf="item.authenticated">
 
                   <ng-select [items]="profiles"
                   (change)="selectProfileToSend($event)"
@@ -61,7 +60,7 @@
                   </ng-select>
 
                 </td>
-                <td>
+                <td *ngIf="item.authenticated">
                   <button (click)="sendProposition(item)" title="Envoyer email" type="button" class="btn btn-info mx-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
@@ -74,7 +73,83 @@
                     </svg>
                   </button>
                 </td>
-              </tr>
+            </tr>
+        </tbody>
+      </table>    
+
+      <br>
+      <hr>
+      <h3 class="text-center mt-3">Utilisateurs non inscrits sur la plateforme</h3>
+    <table class="table mt-4">
+        <thead class="table-info">
+          <tr>
+            <!-- <th class="col-0.5" scope="col">#</th> -->
+            <th class="col-1.5" scope="col">Expéditeur</th>
+            <th class="col-1.5" scope="col">Email</th>
+            <th class="col-1.5" scope="col">Téléphone</th>
+            <th class="col-3" scope="col">Message</th>
+            <th class="col-1" scope="col">Status</th>
+            <th class="col-2.5" scope="col">Candidat</th>
+            <th class="col-1" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of messages let i=index">
+                <!-- <th *ngIf="item.authenticated" scope="row">{{i+1}}</th> -->
+                <td *ngIf="!item.authenticated">{{item.name}}</td>
+                <td *ngIf="!item.authenticated">{{item.email}}</td>
+                <td *ngIf="!item.authenticated">{{item.phone}}</td>
+                <td *ngIf="!item.authenticated">
+                  <p>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample-{{item.id}}" role="button" aria-expanded="false" aria-controls="collapseExample-{{item.id}}">
+                      Lire
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample-{{item.id}}">
+                    <div class="card card-hearder">
+                      <strong>
+                        Object:
+                      </strong>
+                      {{item.object}}
+                    </div>
+                    <div class="card card-body">
+                      {{item.message}}
+                    </div>
+                  </div>
+                </td>
+                <td *ngIf="!item.authenticated">
+                  <select (change)="sendStatu(item.id, $event)" id="inputState12" value="" class="form-select changeStatus">
+                    <option [selected]="item.status=='lu'">lu</option>
+                    <option [selected]="item.status=='non lu'">non lu</option>
+                  </select>
+                </td>
+                <td *ngIf="!item.authenticated">
+
+                  <ng-select [items]="profiles"
+                  (change)="selectProfileToSend($event)"
+                      bindLabel="name"
+                      bindValue="id"
+                      placeholder="Sélectionner"
+                      appendTo="body"
+                      multiple="true"
+                      >
+                  </ng-select>
+
+                </td>
+                <td *ngIf="!item.authenticated">
+                  <button (click)="sendProposition(item)" title="Envoyer email" type="button" class="btn btn-info mx-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                    </svg>
+                  </button>
+                  <button title="Supprimer" (click)="deleteMsg(item)" type="button" class="btn btn-danger mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                      <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                    </svg>
+                  </button>
+                </td>
+            </tr>
         </tbody>
       </table>    
 </div>

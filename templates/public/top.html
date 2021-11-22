@@ -33,7 +33,7 @@
                 {% endif %}
                 {% if request.user.is_authenticated %}
                 <div class="login-box mx-5">
-                    <a href="{% url 'auth:logout' %}" data-bs-toggle="modal" id="modalRegister01" data-bs-target="#exampleModal-register" class="btn btn-secondary" >
+                    <a href="{% url 'auth:logout' %}" class="btn btn-secondary" >
                       Déconnexion
                     </a>
                   </div>

@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <h2>Nous Contacter</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Acceuil</a></li>
+                    <li class="breadcrumb-item"><a href="/">Acceuil</a></li>
                     <li class="breadcrumb-item active"> Nous contacter </li>
                 </ul>
             </div>
@@ -29,10 +29,11 @@
                     <p>Veuillez remplir ce formulaire pour nous contacter</p>
                     <form id="contactForm">
                         <div class="row">
+                            {% if not request.user.is_authenticated %}
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="">Nom et Prénom</label>
-                                    <input type="text" class="form-control" id="nameMsg" name="name" placeholder="Votre nom et prénom" required data-error="Veillez entrer votre Nom">
+                                    <input type="text" class="form-control" id="nameMsg" name="name" placeholder="Votre nom et prénom" data-error="Veillez entrer votre Nom">
                                     <div id="nameErr1" class="text-danger">
                                     </div>
                                 </div>
@@ -41,39 +42,40 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="">Email</label>
-                                    <input type="text" placeholder="Votre Email" id="emailMsg" class="form-control" name="email" required data-error="Veillez entrer votre email">
+                                    <input type="text" placeholder="Votre Email" id="emailMsg" class="form-control" name="email" data-error="Veillez entrer votre email">
                                     <div id="emailErr1" class="text-danger">
                                     </div>
                                 </div>
                             </div>
 
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="">Téléphone</label>
-                                    <input type="tel" class="form-control" id="phoneMsg" name="name" placeholder="Entrez votre numéro de téléphone" required data-error="Veillez entrer votre Nom">
+                                    <input type="tel" class="form-control" id="phoneMsg" name="name" placeholder="Entrez votre numéro de téléphone" data-error="Veillez entrer votre Nom">
                                     <div id="phoneErr1" class="text-danger">
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="">Objet</label>
-                                    <input type="text" class="form-control" id="subjectMsg" name="name" placeholder="Objet" required data-error="Veillez entrer le sujet">
+                                    <label class="form-label" for=""><strong>Objet :</strong></label>
+                                    <input type="text" class="form-control" id="subjectMsg" name="name" placeholder="Objet" data-error="Veillez entrer le sujet">
                                     <div id="objectErr1" class="text-danger">
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" value="{{request.user}}" id="retriveUser">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="">Message</label>
-                                    <textarea class="form-control" id="messageMsg" placeholder="Votre Message" rows="4" data-error="Evrivez votre message" required></textarea>
+                                    <label class="form-label" for=""><strong>Message :</strong></label>
+                                    <textarea class="form-control" id="messageMsg" placeholder="Votre Message" rows="4" data-error="Evrivez votre message"></textarea>
                                     <div id="messageErr1" class="text-danger">
                                     </div>
                                 </div>
                                 <div class="submit-button text-center">
-                                    <button class="btn btn-secondary hvr-hover" id="submitMsg" type="submit">Envoyer</button>
+                                    <button class="btn btn-secondary hvr-hover" id="submitMsg" type="button">Envoyer</button>
                                 </div>
                             </div>
                         </div>

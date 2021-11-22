@@ -20,9 +20,9 @@ function setError(key, name, tableError, getIdInput, textError, getIdError){
         getIdError.textContent=textError
       }
       if (tableError.hasOwnProperty(name) == false) {
-        getIdInput.classList?.remove("is-invalid")
-        getIdInput.classList?.add("is-valid")
-        getIdError.textContent=''
+        getIdInput?.classList?.remove("is-invalid")
+        getIdInput?.classList?.add("is-valid")
+        getIdError?.textContent=''
       }
 }
 

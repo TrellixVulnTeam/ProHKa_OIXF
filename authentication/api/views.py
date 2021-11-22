@@ -42,7 +42,6 @@ class LoginView(APIView):
 
         if len(errors) == 0:
             user = User.objects.get(email=email)
-            # print("the id user is ", user.role)
             payload = {
                 'id': user.id,
                 'role': user.role,

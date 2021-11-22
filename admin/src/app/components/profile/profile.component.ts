@@ -15,25 +15,71 @@ export class ProfileComponent implements OnInit {
   users!: any;
   errors!: string[];
   url: string = 'http://127.0.0.1:8000';
+  next: string;
+  previous: string;
+  count!: number;
+  search: string = "all";
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.getProfile()
+    // this.getProfile()
+    this.getAllProfile(this.url + "/custom/api/show-all-profiles/?search=" + this.search)
     this.getClientUsers()
   }
 
   // ******************************* fetch all profiles and userCLient **************************
-  getProfile() {
-    this.profileService.getProfile().subscribe(res => {
-      this.profiles = res
+  // getProfile() {
+  //   this.profileService.getProfile().subscribe(res => {
+  //     this.profiles = res
+  //   })
+  // }
+
+  getAllProfile(url: string) {
+    // this.search = "all"
+    this.profileService.allProfile(url).subscribe(res => {
+      console.log("the result is ", res)
+      this.count = res.count
+      this.profiles = res.results
+      if (res.next) {
+        this.next = res.next
+      }
+      if (res.previous) {
+        this.previous = res.previous
+      }
     })
+  }
+
+  fetchNext() {
+    console.log("the url next is", this.next)
+    this.getAllProfile(this.next)
+  }
+  fetchPrevious() {
+    this.getAllProfile(this.previous)
   }
 
   getClientUsers() {
     this.profileService.getClientUser().subscribe(res => {
       this.users = res
     })
+  }
+
+  onKeyUp(event) {
+    let ele = event.target.value
+    if (ele.length == 0) {
+      this.search = "all"
+      this.profileService.allProfile(this.url + "/custom/api/show-all-profiles/?search=" + this.search).subscribe(res => {
+        this.profiles = res.results
+      })
+
+    }
+    if (ele.length > 1) {
+      this.search = ele
+      this.profileService.allProfile(this.url + "/custom/api/show-all-profiles/?search=" + this.search).subscribe(res => {
+        this.profiles = res.results
+      })
+
+    }
   }
 
   // *************************** AFFECT A PROFILE TO A USER CLIENT **********************************

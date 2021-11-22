@@ -40,6 +40,9 @@ class MessageSerializers(serializers.ModelSerializer):
 
 
 class EvaluationFileSerializers(serializers.ModelSerializer):
+    user = UserSerializers()
+    profileUser = UserRegistrationSerializers()
+
     class Meta:
         model = EvaluationFile
         fields = "__all__"

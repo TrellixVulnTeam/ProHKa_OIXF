@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 
+
 def loginUser(request):
     if request.method == "POST":
         email = request.POST['email']
@@ -12,7 +13,7 @@ def loginUser(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect("/custom/home/")
+            return redirect("/")
         else:
             return redirect("auth:login")
     context = {}
@@ -20,7 +21,5 @@ def loginUser(request):
 
 
 def logoutUser(request):
-    print('access the method')
     logout(request)
     return redirect("auth:login")
-    

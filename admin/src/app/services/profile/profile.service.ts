@@ -23,6 +23,10 @@ export class ProfileService {
     return this.http.get<ProfileInt>(this.APIUrl + "custom/api/show-profile/")
   }
 
+  allProfile(url: string): Observable<any> {
+    return this.http.get<ProfileInt>(url)
+  }
+
   getClientUser(): Observable<any> {
     return this.http.get<any>(this.APIUrl + "auth/api/get-all-user/")
   }
@@ -39,13 +43,17 @@ export class ProfileService {
   }
 
 
-  // *************************** retrieve command and message *******************************************
+  // *************************** retrieve command and message and all note evaluations *******************************************
   getAllCommand(): Observable<any> {
     return this.http.get<any>(this.APIUrl + "custom/api/get-all-command/")
   }
 
   getAllMessage(): Observable<any> {
     return this.http.get<any>(this.APIUrl + "custom/api/retrieve-message/")
+  }
+
+  getAllNotes(): Observable<any> {
+    return this.http.get<any>(this.APIUrl + "custom/api/add-evaluation/")
   }
 
   // ********************************** send status of command and message *******************************************

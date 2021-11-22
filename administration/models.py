@@ -1,4 +1,5 @@
 from string import punctuation
+from django.contrib.auth import authenticate
 from django.db import models
 from django.utils.translation import activate
 from authentication.models import *
@@ -105,6 +106,7 @@ class Message(models.Model):
     phone = models.CharField(max_length=15, null=True, blank=True)
     object = models.CharField(max_length=100, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
+    authenticated = models.BooleanField(default=True)
     status = models.CharField(max_length=15, default='non lu')
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)

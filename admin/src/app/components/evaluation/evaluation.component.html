@@ -1,1 +1,69 @@
 <app-header></app-header>
+<h2>Evaluation du mois de :</h2> 
+<h4>Liste des candidats placees : </h4>
+
+
+
+<ul *ngFor="let item of notes" class="list-inline">
+
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample-{{item.id}}" role="button" aria-expanded="false" aria-controls="collapseExample-{{item.id}}">
+            {{item.profileUser?.name}} {{item.profileUser?.surname}}
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample-{{item.id}}">
+        <div class="card card-body">
+            <table class="table table-bordered border-secondary">
+                <!-- <label for="inputCotation4" class="form-label"><strong>Cotation d'évaluation</strong></label> -->
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Désignations</th>
+                        <th scope="col">Notes/5
+                        <br> (Les notes sont comprises entre 0 et 5)
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Ponctualité (respect des horaires de travail)</td>
+                        <td>
+                        <input deactivate value="{{item.punctuation}}" type="number" class="form-control" placeholder="Entrez une note" id="inputNote0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Adaptation à l’environnement et assiduité dans l’exercice des tâches</td>
+                        <td>
+                        <input deactivate value="{{item.adaptation}}" type="number" maxlength='1' class="form-control" placeholder="Entrez une note" max="5" id="inputNote1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Respect des consignes de travail</td>
+                        <td>
+                        <input deactivate value="{{item.respect}}" type="number" class="form-control" placeholder="Entrez une note" id="inputNote2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Sens de l’initiative</td>
+                        <td>
+                        <input deactivate value="{{item.iniative}}" type="number" class="form-control" placeholder="Entrez une note" id="inputNote3">
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+            <h4>
+                Au terme de cet evalution, le candidat obtient la note de <strong>
+                    {{item.finalNote}}/20
+                </strong> et
+                comme commentaire du client il dit : <br>
+                <p>{{item.comments}}</p> <br>
+                    le client souhaite le conserver ?  <strong *ngIf="item.decision">OUI</strong> 
+                    <strong *ngIf="!item.decision">NON</strong>
+            </h4>
+        </div>
+      </div>
+</ul>

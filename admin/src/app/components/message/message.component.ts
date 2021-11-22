@@ -91,6 +91,7 @@ export class MessageComponent implements OnInit {
           this.profileService.proposition(data).subscribe(res => {
             if (res) {
               toastShow('success', "Email envoyé avec succès")
+              this.ngOnInit()
             }
           })
         }
